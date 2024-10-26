@@ -1,25 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'crud_app/css/styles.css' %}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'crud_app/css/styles.css' %}" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <div class="busqueda">busqueda</div>
-        <div class="bloques">Bloques</div>
-        <div class="profile">profile</div>
+      <div class="busqueda">busqueda</div>
+      <div class="bloques">Bloques</div>
+      <div class="profile"><a href="#modal"> Iniciar Sesion </a></div>
     </header>
 
-    {% block contenido %}
+    <div id="modal" class="modalmask">
+        <div class="modalbox">
+            <!-- Botón de cierre -->
+            <a href="#close" title="Cerrar" class="close">✕</a> <!-- Cambié la "X" a ✕ para que sea más visual -->
+    
+            <!-- Sección izquierda: Login -->
+            <div class="left-section">
+                <h2><span>👤</span> Iniciar sesión</h2>
+                <form action="/login" method="POST">
+                    <input type="text" name="username" placeholder="email o usuario..." required>
+                    <input type="password" name="password" placeholder="contraseña..." required>
+                    <button type="submit" class="login-btn">Iniciar sesión</button>
+                </form>
+                <a href="#" class="forgot-password">¿Perdiste tu contraseña?</a>
+            </div>
+            
+            <!-- Sección derecha: Registro -->
+            <div class="right-section">
+                <h2>¡Hola!</h2>
+                <p>Si aún no tienes una cuenta, puedes crear una.</p>
+                <button class="register-btn" onclick="window.location.href='/register'">Registrarme</button>
+            </div>
+        </div>
+    </div>
+    
+
+    {% block contenido %} 
     {% endblock %}
 
-    <footer>
-
-
-    </footer>
-    </body>
-    </html>
+    <footer></footer>
+  </body>
+</html>

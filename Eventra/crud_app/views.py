@@ -4,3 +4,6 @@ from django.contrib import messages
 # Create your views here.
 def menu_eventos(request):
     return render(request, 'crud_app/index.html')
+
+def registro_usuario(request):
+    return render(request, 'crud_app/registro_usuario.html')
