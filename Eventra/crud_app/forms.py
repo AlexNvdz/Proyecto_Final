@@ -25,4 +25,6 @@ class RegistroUsuarioForm(forms.ModelForm):
             user.save()
         return user
 
-
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Nombre de usuario', max_length=150)
+    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
