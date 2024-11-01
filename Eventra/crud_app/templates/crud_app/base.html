@@ -1,38 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'crud_app/css/styles.css' %}" />
-    <title>Inicio</title>
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Eventra</title>
+  </head>
+  <body>
     <header class="header">
-        {% if user.is_authenticated %}
-            <div class="busqueda">busqueda</div>
-            <div class="bloques">Bloques</div>
-            <div class="profile">
-                <span>{{ user.username }}</span> <!-- Muestra el nombre del usuario -->
-                <button class="hamburguesa" onclick="toggleMenu()">☰</button> <!-- Botón de hamburguesa -->
-            </div>
-        {% else %}
-            <div class="busqueda">busqueda</div>
-            <div class="bloques">Bloques</div>
-            <div class="profile"><a href="{% url 'login' %}"> Iniciar Sesion </a></div>
-        {% endif %}
+      <div class="left-section">
+        <div class="logo">Eventra</div>
+        <div class="search-container">
+          <div class="box">
+            <input
+              class="search"
+              type="text"
+              placeholder=""
+              spellcheck="false"
+            />
+          </div>
+        </div>
+        <style>
+          :root {
+            --search-icon-url: url("{% static 'assets/search-bold.svg' %}");
+          }
+        </style>
+      </div>
+      <div class="right-section">
+        <div class="location-dropdown">
+          <span>Ubicación</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M7 10l5 5 5-5z" />
+          </svg>
+        </div>
+
+        <a href="#" class="btnSesion">Iniciar Sesión</a>
+        <a href="#" class="btnSesion">Registrarse</a>
+      </div>
     </header>
 
-    {% block contenido %} 
-    {% endblock %}
+    {% block contenido %} {% endblock %}
 
-    <footer></footer>
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2024 Eventra. Todos los derechos reservados.</p>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Ayuda</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </footer>
 
     <script>
-        function toggleMenu() {
-            // Aquí puedes implementar la lógica para mostrar el menú de usuario
-            alert("Menú de usuario"); // Esto es solo un ejemplo, cambia según lo que necesites
-        }
+      function toggleMenu() {
+        // Aquí puedes implementar la lógica para mostrar el menú de usuario
+        alert("Menú de usuario"); // Esto es solo un ejemplo, cambia según lo que necesites
+      }
     </script>
-</body>
+  </body>
 </html>
