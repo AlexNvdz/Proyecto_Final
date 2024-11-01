@@ -15,14 +15,14 @@ def registrar_usuario(request):
     else:
         form = RegistroUsuarioForm()
 
-    return render(request, 'crud_app/registro_usuario.html', {'form': form})
+    return render(request, 'registro_usuario.html', {'form': form})
 
 
 def login_view(request):
-    return render(request, 'crud_app/login.html')
+    return render(request, 'login.html')
 
 
 def menu_eventos(request):
-    return render(request, 'crud_app/index.html')
+    return render(request, 'index.html')
 
 
