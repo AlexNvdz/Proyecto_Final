@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redireccionando...</title>
+</head>
+<body>
+    <div class="mensaje-flotante">
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <script>
+        // Redirigir después de un retraso
+        setTimeout(function() {
+            window.location.href = "{% url url %}";  // Redirige a la URL especificada
+        }, 2000);  // 5000 ms = 5 segundos
+    </script>
+</body>
+</html>

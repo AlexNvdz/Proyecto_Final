@@ -57,7 +57,7 @@ body {
 .btn-submit {
     width: 100%;
     padding: 10px;
-    background-color: #ff6b00;
+    background-color: #4da8da;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -67,7 +67,7 @@ body {
 }
 
 .btn-submit:hover {
-    background-color: #e65a00;
+    background-color: #007bff;
 }
 
 /* Información de bienvenida */
@@ -105,4 +105,33 @@ body {
 
 .btn-login:hover {
     background-color: #e6e6e6;
+}
+
+.mensaje-flotante {
+    position: fixed; /* Mantiene el mensaje en la esquina */
+    top: 20px; /* Distancia desde la parte superior */
+    right: 20px; /* Distancia desde la derecha */
+    z-index: 9999; /* Asegura que esté por encima de otros elementos */
+}
+
+.mensaje-flotante ul {
+    list-style-type: none; /* Quita los puntos de la lista */
+    padding: 0;
+    margin: 0;
+}
+
+.mensaje-flotante li {
+    margin: 5px 0; /* Espaciado entre mensajes */
+    padding: 10px;
+    border-radius: 5px; /* Bordes redondeados */
+    color: white; /* Color del texto */
+    opacity: 0.9; /* Ligera transparencia */
+}
+
+.mensaje-flotante li.error {
+    background-color: #dc3545; /* Color rojo para mensajes de error */
+}
+
+.mensaje-flotante li.success {
+    background-color: #28a745; /* Color verde para mensajes de éxito */
 }

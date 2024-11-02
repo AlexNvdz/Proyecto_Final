@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
+    <div class="mensaje-flotante">
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
     <div class="registro-container">
         <div class="registro-form">
             <h2>Iniciar sesión</h2>
@@ -31,4 +40,14 @@
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mensajes = document.querySelectorAll('.mensaje-flotante li');
+        mensajes.forEach(function(mensaje) {
+            setTimeout(() => {
+                mensaje.style.display = 'none'; // Oculta el mensaje después de 5 segundos
+            }, 5000);
+        });
+    });
+</script>
 </html>

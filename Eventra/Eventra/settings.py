@@ -126,3 +126,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+    'crud_app.auth_backend.UsuarioAuthBackend',  # Tu backend personalizado
+    'django.contrib.auth.backends.ModelBackend',  # Backend predeterminado de Django
+]
