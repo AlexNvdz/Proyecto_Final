@@ -1,20 +1,19 @@
 :root {
-  --primary: #2f6690;
+  --primary: #3a7ca5;
   --primary-dark: #2f6690;
   --primary-darker: #265072;
   --text: #16425b;
   --background: #d9dcd6;
+  --background-dark: #c3c6be;
   --secondary: #81c3d7;
+  --tarjeta: #e8eae4;
   --gray-border: rgba(0, 0, 0, 10%);
-  --gray-border-hover: #505050;
-  --gray-menu-button: #7e7e7e;
-  --gray-menu-button-hover: #232323;
-  --navbar-height: 4rem;
-  --gray-text-hover: #8f8f8f;
-  --gray-icon: #a0a0a0;
-
   --border-radius: 2rem;
   --glow-size: 0.5rem;
+  --navbar-height: 4rem;
+  --gray: #6c757d;
+  --dark: #3d464d;
+  --input-bg: #c2c6c0;
 }
 
 body {
@@ -22,12 +21,30 @@ body {
   font-size: 16px;
   color: var(--text);
   background: var(--background);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
-
+/* Ocupa el espacio restante del contenido */
+html {
+  height: 100%;
+}
+section {
+  flex: 1;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: var(--primary);
+}
+.logo a {
+  text-decoration: none;
+  color: var(--primary);
 }
 
 .header {
@@ -169,130 +186,9 @@ body {
   }
 }
 
-/* container */
-.responsive-two-column-grid {
-  display: flex;
-  flex-direction: column-reverse; /* Invierte el orden en pantallas móviles */
-}
-
-/* columns */
-.responsive-two-column-grid > * {
-  padding: 1rem;
-}
-.content {
-  padding: 10rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  text-align: center;
-  position: relative; /* Para el círculo */
-}
-.content h1 {
-  font-size: 2.7rem;
-  width: 16ch;
-  margin: 0 auto;
-}
-
-.content h5 {
-  font-size: 1.3rem;
-  line-height: 1.2;
-  width: 21ch;
-  text-align: center;
-  margin: 0 auto;
-  font-weight: normal;
-}
-/* tablet breakpoint */
-@media (min-width: 768px) {
-  .responsive-two-column-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    flex-direction: row; /* Vuelve al orden original en pantallas más grandes */
-  }
-}
-
-.button-glow {
-  margin: 0 auto;
-  max-width: 10rem;
-  min-width: 10rem;
-  min-height: 3rem;
-  text-decoration: none;
-  user-select: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--background);
-  position: relative;
-  z-index: 0;
-  border-radius: var(--border-radius);
-  transition: all 0.5s;
-  gap: 0.5rem;
-}
-
-.button-glow:before {
-  content: "";
-  background: linear-gradient(
-    to right,
-    #4da8da,
-    #3a7ca5,
-    #81c3f7,
-    #b3e8ff,
-    #4da8da,
-    #3a7ca5,
-    #81c3f7,
-    #b3e8ff,
-    #4da8da
-  );
-  position: absolute;
-  background-size: 300%;
-  z-index: -1;
-  filter: blur(var(--glow-size));
-  width: calc(100% + var(--glow-size));
-  height: calc(100% + var(--glow-size));
-  opacity: 0;
-  border-radius: var(--border-radius);
-  animation: glow 25s alternate infinite;
-  transition: opacity 0.5s linear;
-}
-
-.button-glow:active {
-  background: var(--primary);
-}
-
-.button-glow:hover:before {
-  opacity: 1;
-}
-
-.button-glow:after {
-  z-index: -1;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: var(--primary);
-  left: 0;
-  top: 0;
-  border-radius: var(--border-radius);
-}
-
-@keyframes glow {
-  0% {
-    background-position: 0 0;
-  }
-
-  50% {
-    background-position: 300% 0;
-  }
-
-  100% {
-    background-position: 0 0;
-  }
-}
-
-.contentLogo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+h1,
+h2 {
+  color: var(--primary-dark);
 }
 
 footer {
@@ -300,6 +196,7 @@ footer {
   color: var(--text); /* Cambia según tu diseño */
   padding: 1rem;
   text-align: center;
+  margin-top: auto;
 }
 
 .footer-content {
@@ -319,9 +216,151 @@ footer {
 
 .footer-content a {
   text-decoration: none;
-  color: inherit; /* Hereda el color del texto del footer */
+  color: inherit;
 }
 
 .footer-content a:hover {
-  text-decoration: underline; /* Agrega subrayado al pasar el mouse */
+  text-decoration: underline;
 }
+
+.navigation__group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.navigation__group > .icon {
+  cursor: pointer;
+  width: 2.25rem;
+  height: 2.25rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.navigation__group > .icon:hover {
+  transform: scale(1.1);
+}
+
+.profile {
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.profile:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.dropdown__wrapper {
+  width: 19rem;
+  top: 5.25rem;
+  right: 1rem;
+  padding: 1rem;
+  position: absolute;
+  border-radius: 0.75rem;
+  background: var(--background);
+  border: 1px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  gap: 0.25rem;
+  animation: fadeOutAnimation ease-in-out 0.3s forwards;
+  z-index: 40;
+}
+
+.dropdown__wrapper h2 {
+  font-size: 1.15rem;
+}
+
+.dropdown__wrapper--fade-in {
+  animation: fadeInAnimation ease-in-out 0.3s forwards;
+}
+
+.none {
+  display: none;
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+  animation: fadeOutAnimation ease-in-out 0.3s forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOutAnimation {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.dropdown__group {
+  padding: 0.75rem;
+}
+
+.divider {
+  width: 100%;
+  padding: 0;
+  margin: 1rem 0;
+  border: 1px solid var(--primary);
+}
+
+nav > ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.25rem;
+}
+
+nav > ul > li {
+  height: 3rem;
+  color: var(--primary-dark);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  border-radius: 0.5rem;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 0.5rem;
+  width: 100%;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+nav > ul > li > a {
+  color: var(--primary-dark);
+}
+
+nav > ul > li:hover a {
+  color: var(--text);
+}
+nav > ul > li:hover {
+  background: var(--background-dark);
+  color: var(--text);
+}
+
+nav > ul > li > svg {
+  stroke: var(--text-gray);
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+nav > ul > li:hover > svg {
+  stroke: var(--text);
+}
+
+
+

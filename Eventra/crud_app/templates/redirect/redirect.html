@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/loader.css' %}" />
     <title>Redireccionando...</title>
-</head>
-<body>
-    <div class="mensaje-flotante">
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+  </head>
+  <body>
+    <div class="loader">
+      <div
+        aria-label="Orange and tan hamster running in a metal wheel"
+        role="img"
+        class="wheel-and-hamster"
+      >
+        <div class="wheel"></div>
+        <div class="hamster">
+          <div class="hamster__body">
+            <div class="hamster__head">
+              <div class="hamster__ear"></div>
+              <div class="hamster__eye"></div>
+              <div class="hamster__nose"></div>
+            </div>
+            <div class="hamster__limb hamster__limb--fr"></div>
+            <div class="hamster__limb hamster__limb--fl"></div>
+            <div class="hamster__limb hamster__limb--br"></div>
+            <div class="hamster__limb hamster__limb--bl"></div>
+            <div class="hamster__tail"></div>
+          </div>
+        </div>
+        <div class="spoke"></div>
+      </div>
     </div>
-
     <script>
-        // Redirigir después de un retraso
-        setTimeout(function() {
-            window.location.href = "{% url url %}";  // Redirige a la URL especificada
-        }, 2000);  // 5000 ms = 5 segundos
+      // Redirigir después de un retraso
+      setTimeout(function () {
+        window.location.href = "{% url url %}"; // Redirige a la URL especificada
+      }, 2000); // 5000 ms = 5 segundos
     </script>
-</body>
+  </body>
 </html>

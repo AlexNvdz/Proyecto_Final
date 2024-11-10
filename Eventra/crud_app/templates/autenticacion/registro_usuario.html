@@ -1,42 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
     {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro de Usuario</title>
-    <link rel="stylesheet" href="{% static 'css/registro.css' %}">
-</head>
-<body>
-    <div class="registro-container">
-        <div class="registro-form">
-            <h2>Crear cuenta</h2>
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ form.usuario.label_tag }}
-                    {{ form.usuario }}
-                </div>
-                <div class="form-group">
-                    {{ form.contraseña.label_tag }}
-                    {{ form.contraseña }}
-                </div>
-                <div class="form-group">
-                    {{ form.correo.label_tag }}
-                    {{ form.correo }}
-                </div>
-                <div class="form-group">
-                    <label>{{ form.tipo_usuario.label }}</label>
-                    {{ form.tipo_usuario }}
-                </div>
-                <button type="submit" class="btn-submit">Registrarme</button>
-            </form>
+    <link rel="stylesheet" href="{% static 'css/registro.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="form-wrapper">
+      <main class="form-side">
+        <a href="{% url 'home' %}" title="Logo">
+          <img
+            src="{% static 'assets/EventraLogoNoText.svg' %}"
+            alt="eventra logo"
+            class="logo"
+          />
+        </a>
+        <form method="post" action="{% url 'registro' %}" class="my-form">
+          {% csrf_token %}
+          <div class="form-welcome-row">
+            <h1>¡Únete a nosotros! 📝</h1>
+            <h2>Crea tu cuenta para comenzar.</h2>
+          </div>
+          <div class="divider"></div>
+
+          <div class="text-field">
+            {{ form.usuario.label_tag }} {{ form.usuario }}
+          </div>
+          <div class="text-field">
+            {{ form.correo.label_tag }} {{ form.correo }}
+          </div>
+          <div class="text-field">
+            {{ form.contraseña.label_tag }} {{ form.contraseña }}
+          </div>
+          <div class="radio-field">
+            <label>{{ form.tipo_usuario.label }}</label>
+            {{ form.tipo_usuario }}
+          </div>
+          <button class="my-form__button" type="submit">Registrarme</button>
+          <div class="my-form__actions">
+            <div class="my-form__row">
+              <span>¿Ya tienes una cuenta?</span>
+              <a href="{% url 'login' %}" title="Iniciar Sesión">
+                Iniciar Sesión
+              </a>
+            </div>
+          </div>
+        </form>
+      </main>
+
+      <aside class="info-side">
+        <div class="blockquote-wrapper">
+          <img src="https://img.freepik.com/vector-gratis/composicion-banca-oficina-isometrica_1284-37701.jpg?t=st=1731095455~exp=1731099055~hmac=9e329192d848cd7011f7903b160a01ed6f332d60e402159a5fc840b86a9d35b6&w=740" alt="img-room" class="returns" />
         </div>
-        <div class="registro-info">
-            <h2>¡Bienvenido!</h2>
-            <p>Si ya tienes una cuenta, puedes iniciar sesión.</p>
-            <a href="{% url 'login' %}" class="btn-login">Iniciar sesión</a>
-        </div>
+      </aside>
     </div>
-</body>
+  </body>
 </html>

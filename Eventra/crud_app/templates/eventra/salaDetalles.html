@@ -1,0 +1,113 @@
+{% extends 'eventra/base.html' %}{% block contenido %} {% load static %}
+
+<div class="container-fluid pb-5">
+  <div class="row px-xl-5">
+    <div class="col-lg-5 mb-30">
+      <div id="room-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              class="w-100 h-100"
+              src="{% static 'assets/lakeview-elegance.png' %}"
+              alt="Room Image 1"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              class="w-100 h-100"
+              src="{% static 'assets/skyline-oasis.png' %}"
+              alt="Room Image 2"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              class="w-100 h-100"
+              src="{% static 'assets/vista-paradiso.png' %}"
+              alt="Room Image 3"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              class="w-100 h-100"
+              src="img/product-4.jpg"
+              alt="Room Image 4"
+            />
+          </div>
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#room-carousel"
+          data-slide="prev"
+        >
+          <i class="fa fa-2x fa-angle-left text-dark"></i>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#room-carousel"
+          data-slide="next"
+        >
+          <i class="fa fa-2x fa-angle-right text-dark"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-7 h-auto mb-30">
+      <div class="h-100 p-30">
+        <h3>Nombre de la sala</h3>
+        <p class="mb-4">Desripcion corta de la sala</p>
+
+        <form>
+          <div class="mb-3">
+            <label for="reservation-date" class="form-label">Fecha:</label>
+            <input
+              type="date"
+              id="reservation-date"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="reservation-time" class="form-label">Hora:</label>
+            <input
+              type="time"
+              id="reservation-time"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="number-of-guests" class="form-label"
+              >Numero de Invitados:</label
+            >
+            <input
+              type="number"
+              id="number-of-guests"
+              class="form-control"
+              min="1"
+              max="100"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="reservation-duration" class="form-label"
+              >Duracion (horas):</label
+            >
+            <input
+              type="number"
+              id="reservation-duration"
+              class="form-control"
+              min="1"
+              max="12"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary px-3">
+            <i class="fa fa-calendar mr-1"></i> Reservar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,161 @@
+/* container */
+.responsive-two-column-grid {
+  display: flex;
+  flex-direction: column-reverse; /* Invierte el orden en pantallas móviles */
+  align-items: center;
+  justify-content: center;
+  gap: 2rem; /* Espacio entre las columnas */
+  padding: 1rem; /* Margen global para evitar que el contenido quede pegado */
+}
+
+/* columns */
+.responsive-two-column-grid > * {
+  padding: 2rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  max-width: 500px; /* Limita el ancho para un diseño más limpio */
+  margin: 0 auto;
+}
+
+.content h1 {
+  font-size: 2rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.content a:hover {
+  color: var(--tarjeta);
+}
+
+.content h5 {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin: 0 auto;
+  font-weight: normal;
+  text-align: center;
+}
+.contentLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contentLogo img {
+  max-width: 100%; /* Asegura que la imagen no desborde */
+  height: auto;
+}
+
+/* tablet breakpoint */
+@media (min-width: 768px) {
+  .responsive-two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem; /* Espacio mayor entre las columnas */
+  }
+
+  .content {
+    padding: 3rem; /* Mayor relleno en pantallas grandes */
+    text-align: left; /* Ajusta la alineación para pantallas más grandes */
+  }
+
+  .content h1 {
+    font-size: 2.2rem;
+  }
+
+  .content h5 {
+    font-size: 1.3rem;
+  }
+}
+
+/* desktop breakpoint */
+@media (min-width: 1024px) {
+  .responsive-two-column-grid {
+    gap: 6rem;
+  }
+
+  .content {
+    padding: 5rem; /* Más espacio en pantallas grandes */
+  }
+}
+
+.button-glow {
+  margin: 0 auto;
+  max-width: 10rem;
+  min-width: 10rem;
+  min-height: 3rem;
+  text-decoration: none;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--background);
+  position: relative;
+  z-index: 0;
+  border-radius: var(--border-radius);
+  transition: all 0.5s;
+  gap: 0.5rem;
+}
+
+.button-glow:before {
+  content: "";
+  background: linear-gradient(
+    to right,
+    #4da8da,
+    #3a7ca5,
+    #81c3f7,
+    #b3e8ff,
+    #4da8da,
+    #3a7ca5,
+    #81c3f7,
+    #b3e8ff,
+    #4da8da
+  );
+  position: absolute;
+  background-size: 300%;
+  z-index: -1;
+  filter: blur(var(--glow-size));
+  width: calc(100% + var(--glow-size));
+  height: calc(100% + var(--glow-size));
+  opacity: 0;
+  border-radius: var(--border-radius);
+  animation: glow 25s alternate infinite;
+  transition: opacity 0.5s linear;
+}
+
+.button-glow:active {
+  background: var(--primary);
+}
+
+.button-glow:hover:before {
+  opacity: 1;
+}
+
+.button-glow:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  left: 0;
+  top: 0;
+  border-radius: var(--border-radius);
+}
+
+@keyframes glow {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 300% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}

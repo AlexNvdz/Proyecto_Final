@@ -1,137 +1,245 @@
+:root {
+  --primary: #2f6690;
+  --primary-light: #4a7d9f;
+  --primary-disabled: #4a7d9f;
+  --primary-lighter: #454344;
+  --secondary: #1d1d1d;
+  --text: #16425b;
+  --text-gray: #607d8b;
+  --text-placeholder: #8890a7;
+  --border: #dfe3e6;
+  --btn-bg: #ededed;
+  --background: #d9dcd6;
+  --background-dark: #c3c6be;
+  --error: #e5484d;
+}
+
+html {
+  height: 100%;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f2f2f2;
+  font-family: "Exo 2";
+  height: 100%;
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+  background: var(--background);
 }
 
-.registro-container {
-    display: flex;
-    max-width: 750px;
-    width: 90%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Formulario de registro */
-.registro-form {
-    background-color: #fff;
-    width: 50%;
-    padding: 40px 20px;
-    box-sizing: border-box;
+.form-welcome-row {
+  margin-bottom: 1rem;
 }
 
-.registro-form h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+.form-welcome-row h1 {
+  color: var(--text);
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: normal;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.form-welcome-row h2 {
+  color: var(--text-gray);
+  font-size: 1.1rem;
+  font-weight: normal;
 }
 
-.form-group label {
-    display: block;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 5px;
+.form-wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  gap: 1rem;
+  max-height: 200rem;
+  height: 100%;
+  width: 100%;
 }
 
-.form-group input, .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+.form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
 }
 
-.form-group input[type="radio"] {
-    width: auto;
+.logo {
+  height: 4rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
 }
 
-.btn-submit {
-    width: 100%;
-    padding: 10px;
-    background-color: #4da8da;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
+.my-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  position: relative;
+  gap: 1.25rem;
+  max-width: 26rem;
+  width: 100%;
 }
 
-.btn-submit:hover {
-    background-color: #007bff;
+.my-form__button {
+  background: var(--primary);
+  border: 1px solid var(--primary-light);
+  color: var(--background);
+  white-space: nowrap;
+  display: grid;
+  place-items: center;
+  margin-top: 1.5rem;
+  line-height: 2.75rem;
+  outline: none;
+  border: none;
+  font-size: 1.125rem;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  font-family: "Exo 2";
 }
 
-/* Información de bienvenida */
-.registro-info {
-    background-color: #007bff;
-    color: #fff;
-    width: 50%;
-    padding: 40px 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.my-form:invalid .my-form__button {
+  background: var(--primary-disabled);
+  border: 1px solid var(--primary-light);
+  cursor: not-allowed;
 }
 
-.registro-info h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+.my-form__actions {
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  gap: 1rem;
+  margin-top: 0.5rem;
 }
 
-.registro-info p {
-    margin-bottom: 20px;
+.my-form__actions a {
+  color: var(--text);
 }
 
-.btn-login {
-    padding: 10px 20px;
-    background-color: #fff;
-    color: #007bff;
-    text-decoration: none;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: bold;
+.my-form__actions a:hover {
+  color: var(--text-gray);
+  text-decoration: underline;
 }
 
-.btn-login:hover {
-    background-color: #e6e6e6;
+.my-form__row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.mensaje-flotante {
-    position: fixed; /* Mantiene el mensaje en la esquina */
-    top: 20px; /* Distancia desde la parte superior */
-    right: 20px; /* Distancia desde la derecha */
-    z-index: 9999; /* Asegura que esté por encima de otros elementos */
+.text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.mensaje-flotante ul {
-    list-style-type: none; /* Quita los puntos de la lista */
-    padding: 0;
-    margin: 0;
+.text-field input {
+  color: var(--secondary);
+  max-width: 100%;
+  width: 100%;
+  border: 1px solid var(--border);
+  min-height: 3rem;
+  letter-spacing: 0.03rem;
+  outline: none;
+  background: var(--background-dark);
+  transition: 0.25s;
+  border-radius: 0.5rem;
+  text-indent: 1.25rem;
 }
 
-.mensaje-flotante li {
-    margin: 5px 0; /* Espaciado entre mensajes */
-    padding: 10px;
-    border-radius: 5px; /* Bordes redondeados */
-    color: white; /* Color del texto */
-    opacity: 0.9; /* Ligera transparencia */
+.text-field label {
+  color: var(--text);
 }
 
-.mensaje-flotante li.error {
-    background-color: #dc3545; /* Color rojo para mensajes de error */
+.text-field input:user-invalid {
+  background: var(--white);
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+.error-message li {
+  list-style: none;
+  color: var(--error);
 }
 
-.mensaje-flotante li.success {
-    background-color: #28a745; /* Color verde para mensajes de éxito */
+.text-field input:user-invalid ~ .error-message {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--error);
+}
+
+.text-field input:focus {
+  border: 1px solid var(--text);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 4px 0px;
+}
+
+/* aside */
+.info-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 2rem;
+  background: url("https://img.freepik.com/vector-gratis/fondo-azul-clasico-abstracto_23-2148428924.jpg?t=st=1731095573~exp=1731099173~hmac=7e014cb1e777907820adc6c5cdbd3c4c7857a0ce275e08089285c784386c65c9&w=1060")
+    repeat center center;
+  background-position: cover;
+  max-height: 90rem;
+}
+
+.info-side .blockquote-wrapper {
+  gap: 1rem;
+  position: relative;
+  padding: 1rem;
+  max-width: 25rem;
+  background: white;
+  border-radius: 1rem;
+}
+
+.info-side .blockquote-wrapper img {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 1rem;
+}
+
+.info-side .blockquote-wrapper blockquote {
+  margin-bottom: 1rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.info-side .author {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.info-side .author img {
+  border-radius: 50%;
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.info-side .author-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (max-width: 720px) {
+  .form-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .info-side {
+    display: none;
+  }
 }

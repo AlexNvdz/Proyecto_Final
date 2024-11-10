@@ -1,59 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/stylesHome.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/stylesIndex.css'%}" />
+    <link href="{% static 'css/stylesDetalle.css' %}" rel="stylesheet" />
     <title>Eventra</title>
   </head>
   <body>
-    <header class="header">
-      <div class="left-section">
-        <div class="logo">Eventra</div>
-        <div class="search-container">
-          <div class="box">
-            <input
-              class="search"
-              type="text"
-              placeholder=""
-              spellcheck="false"
-            />
+    <header>
+      <nav class="header">
+        <div class="left-section">
+          <div class="logo">
+            <a href="{% url 'home' %}">Eventra</a>
           </div>
+          <div class="search-container">
+            <div class="box">
+              <input
+                class="search"
+                type="text"
+                placeholder=""
+                spellcheck="false"
+              />
+            </div>
+          </div>
+          <style>
+            :root {
+              --search-icon-url: url("{% static 'assets/search-bold.svg' %}");
+            }
+          </style>
         </div>
-        <style>
-          :root {
-            --search-icon-url: url("{% static 'assets/search-bold.svg' %}");
-          }
-        </style>
-      </div>
-      <div class="right-section">
-        <div class="location-dropdown">
-          <span>Ubicación</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M7 10l5 5 5-5z" />
-          </svg>
-        </div>
-        {% if usuario_actual %}
-          <p>Bienvenido, {{ usuario_actual.usuario }}!</p>
-          <a href="{% url 'logout' %}" class="btnSesion">Logout</a>
-        {% else %}
+        <div class="right-section">
+          <div class="location-dropdown">
+            <span>Ubicación</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path d="M7 10l5 5 5-5z" />
+            </svg>
+          </div>
+          {% if usuario_actual %}
+          <span class="navigation__group">
+            <i class="fa-solid fa-user fa-2x profile"></i>
+          </span>
+          <div class="dropdown__wrapper hide dropdown__wrapper--fade-in none">
+            <nav>
+              <ul>
+                <li>
+                  <i class="fa-solid fa-user"></i>
+                  <a href="#">Mi perfil</a>
+                </li>
+                <li>
+                  <i class="fa-solid fa-gear"></i>
+                  <a href="#">Ajustes de cuenta</a>
+                </li>
+              </ul>
+              <hr class="divider" />
+              <ul>
+                <li>
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <a href="{% url 'logout' %}">Cerrar sesión</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          {% else %}
           <a href="{% url 'login' %}" class="btnSesion">Iniciar Sesión</a>
           <a href="{% url 'registro' %}" class="btnSesion">Registrarse</a>
-        {% endif %}
-      </div>
+          {% endif %}
+        </div>
+      </nav>
     </header>
 
     {% block contenido %} {% endblock %}
@@ -76,5 +108,11 @@
         alert("Menú de usuario"); // Esto es solo un ejemplo, cambia según lo que necesites
       }
     </script>
+    <script src="{% static 'js/scriptCarrusel.js' %}"></script>
+    <script src="{% static 'js/scriptDropMenuUser.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/scriptCarrusel.js' %}"></script>
   </body>
 </html>

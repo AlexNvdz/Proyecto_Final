@@ -1,0 +1,249 @@
+{% extends 'eventra/base.html' %}{% block contenido %} {% load static %}
+<section class="home-section">
+  <h1>Encuentra el lugar perfecto para tus reuniones</h1>
+  <h4>
+    Con espacios modernos y completamente equipados, asegura tu sala para una
+    experiencia única y profesional
+  </h4>
+
+  <section class="carrusel">
+    <div class="top-bar">
+      <svg
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"
+        />
+        <path d="M16 3v4" />
+        <path d="M8 3v4" />
+        <path d="M4 11h16" />
+        <path d="M7 14h.013" />
+        <path d="M10.01 14h.005" />
+        <path d="M13.01 14h.005" />
+        <path d="M16.015 14h.005" />
+        <path d="M13.015 17h.005" />
+        <path d="M7.01 17h.005" />
+        <path d="M10.01 17h.005" />
+      </svg>
+      <h2>Salas Recomendadas</h2>
+
+      <button
+        type="button"
+        disabled
+        id="action-button--previous"
+        class="action-button--horizontal-scroll"
+      >
+        <svg
+          width="16"
+          height="16"
+          fill="#e8eae4"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12.771 7.115a.829.829 0 0 0-1.2 0L3 15.686l1.2 1.2 7.971-7.971 7.972 7.971 1.2-1.2-8.572-8.571Z"
+          ></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        id="action-button--next"
+        class="action-button--horizontal-scroll"
+      >
+        <svg
+          width="16"
+          height="16"
+          fill="#e8eae4"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12.771 7.115a.829.829 0 0 0-1.2 0L3 15.686l1.2 1.2 7.971-7.971 7.972 7.971 1.2-1.2-8.572-8.571Z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    <div id="events">
+      <a href="#" class="event">
+        <div class="event__image">
+          <img
+            src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2018/04/CataloniaPlac%CC%A7aCatalunya-salas-teatro-1_baja.jpg"
+            alt="SalaImg"
+          />
+        </div>
+        <div class="event-description">
+          <h2>Sala 1</h2>
+          <div class="bottom-stats">
+            <div class="bottom-stat">direccion</div>
+            <div class="bottom-stat">capacidad: 20 personas</div>
+          </div>
+        </div>
+      </a>
+      <a href="#" class="event">
+        <div class="event__image">
+          <img
+            src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2018/04/CataloniaPlac%CC%A7aCatalunya-salas-teatro-1_baja.jpg"
+            alt="SalaImg"
+          />
+        </div>
+        <div class="event-description">
+          <h2>Sala 1</h2>
+          <div class="bottom-stats">
+            <div class="bottom-stat">direccion</div>
+            <div class="bottom-stat">capacidad: 20 personas</div>
+          </div>
+        </div>
+      </a>
+      <a href="#" class="event">
+        <div class="event__image">
+          <img
+            src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2018/04/CataloniaPlac%CC%A7aCatalunya-salas-teatro-1_baja.jpg"
+            alt="SalaImg"
+          />
+        </div>
+        <div class="event-description">
+          <h2>Sala 1</h2>
+          <div class="bottom-stats">
+            <div class="bottom-stat">direccion</div>
+            <div class="bottom-stat">capacidad: 20 personas</div>
+          </div>
+        </div>
+      </a>
+      <a href="#" class="event">
+        <div class="event__image">
+          <img
+            src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2018/04/CataloniaPlac%CC%A7aCatalunya-salas-teatro-1_baja.jpg"
+            alt="SalaImg"
+          />
+        </div>
+        <div class="event-description">
+          <h2>Sala 1</h2>
+          <div class="bottom-stats">
+            <div class="bottom-stat">direccion</div>
+            <div class="bottom-stat">capacidad: 20 personas</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <h2>Salas Disponibles</h2>
+
+  <section class="tarjetas">
+    <article class="tarjeta">
+      <a href="{% url 'salaDetalles' %}">
+        <div class="tarjeta-vista-previa">
+          <img
+            src="{% static 'assets/lakeview-elegance.png' %}"
+            alt="Vista previa de Lakeview Elegance"
+          />
+          <div class="tarjeta-precio">COP 1.000.000</div>
+        </div>
+        <div class="tarjeta-contenido">
+          <h2 class="tarjeta-titulo">Sala 1</h2>
+          <p class="tarjeta-direccion">Dirección</p>
+          <p class="tarjeta-descripcion">Descripción</p>
+          <div class="tarjeta-inferior">
+            <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
+          </div>
+        </div>
+      </a>
+    </article>
+    <article class="tarjeta">
+      <div class="tarjeta-vista-previa">
+        <img
+          src="{% static 'assets/vista-paradiso.png' %}"
+          alt="Vista Paradiso"
+        />
+        <div class="tarjeta-precio">COP 1.000.000</div>
+      </div>
+      <div class="tarjeta-contenido">
+        <h2 class="tarjeta-titulo">Sala 2</h2>
+        <p class="tarjeta-direccion">Dirección</p>
+        <p class="tarjeta-descripcion">Descripción</p>
+        <div class="tarjeta-inferior">
+          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
+        </div>
+      </div>
+    </article>
+    <article class="tarjeta">
+      <div class="tarjeta-vista-previa">
+        <img
+          src="{% static 'assets/skyline-oasis.png' %}"
+          alt="Skyline Oasis"
+        />
+        <div class="tarjeta-precio">COP 1.000.000</div>
+      </div>
+      <div class="tarjeta-contenido">
+        <h2 class="tarjeta-titulo">Sala 3</h2>
+        <p class="tarjeta-direccion">Dirección</p>
+        <p class="tarjeta-descripcion">Descripción</p>
+        <div class="tarjeta-inferior">
+          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
+        </div>
+      </div>
+    </article>
+    <article class="tarjeta">
+      <div class="tarjeta-vista-previa">
+        <img
+          src="{% static 'assets/skyline-oasis.png' %}"
+          alt="Skyline Oasis"
+        />
+        <div class="tarjeta-precio">COP 1.000.000</div>
+      </div>
+      <div class="tarjeta-contenido">
+        <h2 class="tarjeta-titulo">Sala 3</h2>
+        <p class="tarjeta-direccion">Dirección</p>
+        <p class="tarjeta-descripcion">Descripción</p>
+        <div class="tarjeta-inferior">
+          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
+        </div>
+      </div>
+    </article>
+    <article class="tarjeta">
+      <div class="tarjeta-vista-previa">
+        <img
+          src="{% static 'assets/skyline-oasis.png' %}"
+          alt="Skyline Oasis"
+        />
+        <div class="tarjeta-precio">COP 1.000.000</div>
+      </div>
+      <div class="tarjeta-contenido">
+        <h2 class="tarjeta-titulo">Sala 3</h2>
+        <p class="tarjeta-direccion">Dirección</p>
+        <p class="tarjeta-descripcion">Descripción</p>
+        <div class="tarjeta-inferior">
+          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
+        </div>
+      </div>
+    </article>
+    <article class="tarjeta">
+      <div class="tarjeta-vista-previa">
+        <img
+          src="{% static 'assets/skyline-oasis.png' %}"
+          alt="Skyline Oasis"
+        />
+        <div class="tarjeta-precio">COP 1.000.000</div>
+      </div>
+      <div class="tarjeta-contenido">
+        <h2 class="tarjeta-titulo">Sala 3</h2>
+        <p class="tarjeta-direccion">Dirección</p>
+        <p class="tarjeta-descripcion">Descripción</p>
+        <div class="tarjeta-inferior">
+          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
+        </div>
+      </div>
+    </article>
+  </section>
+</section>
+{% endblock %}

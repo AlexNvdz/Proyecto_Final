@@ -1,6 +1,4 @@
-{% extends 'eventra/base.html' %} 
-{% block contenido %} 
-{% load static %}
+{% extends 'eventra/base.html' %} {% block contenido %} {% load static %}
 <section class="responsive-two-column-grid">
   <div class="content">
     <h1>Plataforma de Reserva de Espacios</h1>
@@ -8,7 +6,7 @@
       Organiza tus reuniones y eventos como un despegue, en el espacio que
       necesitas
     </h5>
-    <a href="#" class="button-glow"> Empezar </a>
+    <a href="{% url 'home' %}" class="button-glow"> Empezar </a>
   </div>
   <div class="contentLogo">
     <img
