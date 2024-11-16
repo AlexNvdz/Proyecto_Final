@@ -132,3 +132,10 @@ AUTHENTICATION_BACKENDS = [
     'crud_app.auth_backend.UsuarioAuthBackend',  # Tu backend personalizado
     'django.contrib.auth.backends.ModelBackend',  # Backend predeterminado de Django
 ]
+
+
+
+### cambios ### 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'crud_app/static/uploads'

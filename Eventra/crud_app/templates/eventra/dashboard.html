@@ -1,0 +1,45 @@
+{% extends "eventra/base.html" %}
+
+{% block contenido %}
+<h2>Panel de Administración</h2>
+<p>Bienvenido al Dashboard administrativo, {{ usuario_actual.usuario }}.</p>
+<a href="{% url 'registrar_evento' %}">crear evento</a>
+<!-- Aquí puedes agregar contenido específico para usuarios administrativos -->
+<div class="container mt-4">
+    <h2>Dashboard</h2>
+
+    <h3>Mis Eventos</h3>
+
+    {% if eventos %}
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Ubicación</th>
+                    <th>Precio</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for evento in eventos %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ evento.nombre }}</td>
+                        <td>{{ evento.direccion }}</td>
+                        <td>{{ evento.ubicacion }}</td>
+                        <td>${{ evento.precio_renta }}</td>
+                        <td>
+                            <a href="#" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No tienes eventos registrados.</p>
+    {% endif %}
+</div>
+{% endblock %}

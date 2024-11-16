@@ -74,66 +74,23 @@
       </button>
     </div>
     <div id="events">
-      <a href="#" class="event">
-        <div class="event__image">
-          <img
-            src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2018/04/CataloniaPlac%CC%A7aCatalunya-salas-teatro-1_baja.jpg"
-            alt="SalaImg"
-          />
-        </div>
-        <div class="event-description">
-          <h2>Sala 1</h2>
-          <div class="bottom-stats">
-            <div class="bottom-stat">direccion</div>
-            <div class="bottom-stat">capacidad: 20 personas</div>
+      {% for evento in eventos %}
+        <a href="#" class="event">
+          <div class="event__image">
+            <img
+              src="{{ evento.imagen.url }}"
+              alt="{{ evento.imagen }}"
+            />
           </div>
-        </div>
-      </a>
-      <a href="#" class="event">
-        <div class="event__image">
-          <img
-            src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2018/04/CataloniaPlac%CC%A7aCatalunya-salas-teatro-1_baja.jpg"
-            alt="SalaImg"
-          />
-        </div>
-        <div class="event-description">
-          <h2>Sala 1</h2>
-          <div class="bottom-stats">
-            <div class="bottom-stat">direccion</div>
-            <div class="bottom-stat">capacidad: 20 personas</div>
+          <div class="event-description">
+            <h2>{{ evento.nombre }}</h2>
+            <div class="bottom-stats">
+              <div class="bottom-stat">{{ evento.direccion }}</div>
+              <div class="bottom-stat">Ubicación: {{ evento.ubicacion }}</div>
+            </div>
           </div>
-        </div>
-      </a>
-      <a href="#" class="event">
-        <div class="event__image">
-          <img
-            src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2018/04/CataloniaPlac%CC%A7aCatalunya-salas-teatro-1_baja.jpg"
-            alt="SalaImg"
-          />
-        </div>
-        <div class="event-description">
-          <h2>Sala 1</h2>
-          <div class="bottom-stats">
-            <div class="bottom-stat">direccion</div>
-            <div class="bottom-stat">capacidad: 20 personas</div>
-          </div>
-        </div>
-      </a>
-      <a href="#" class="event">
-        <div class="event__image">
-          <img
-            src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2018/04/CataloniaPlac%CC%A7aCatalunya-salas-teatro-1_baja.jpg"
-            alt="SalaImg"
-          />
-        </div>
-        <div class="event-description">
-          <h2>Sala 1</h2>
-          <div class="bottom-stats">
-            <div class="bottom-stat">direccion</div>
-            <div class="bottom-stat">capacidad: 20 personas</div>
-          </div>
-        </div>
-      </a>
+        </a>
+      {% endfor %} 
     </div>
   </section>
 
