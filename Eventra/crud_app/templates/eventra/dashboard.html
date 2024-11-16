@@ -1,45 +1,74 @@
 {% extends "eventra/base.html" %}
 
 {% block contenido %}
-<h2>Panel de Administración</h2>
-<p>Bienvenido al Dashboard administrativo, {{ usuario_actual.usuario }}.</p>
-<a href="{% url 'registrar_evento' %}">crear evento</a>
-<!-- Aquí puedes agregar contenido específico para usuarios administrativos -->
-<div class="container mt-4">
-    <h2>Dashboard</h2>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <h5>Menú</h5>
+        <ul class="nav">
+            <li><a href="{% url 'dashboard' %}" class="nav-link">Administrar Eventos</a></li>
+            <li><a href="#" class="nav-link">Administrar Reservas</a></li>
+        </ul>
+    </nav>
 
-    <h3>Mis Eventos</h3>
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <h2>Panel de Administración</h2>
+    
 
-    {% if eventos %}
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Dirección</th>
-                    <th>Ubicación</th>
-                    <th>Precio</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for evento in eventos %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ evento.nombre }}</td>
-                        <td>{{ evento.direccion }}</td>
-                        <td>{{ evento.ubicacion }}</td>
-                        <td>${{ evento.precio_renta }}</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm">Editar</a>
-                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                        </td>
-                    </tr>
+        <!-- Mensajes de éxito o error -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
                 {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No tienes eventos registrados.</p>
-    {% endif %}
+            </div>
+        {% endif %}
+
+        <!-- Botón para agregar eventos -->
+        <div class="text-end">
+            <a href="{% url 'registrar_evento' %}" class="btn-success">Agregar Evento</a>
+        </div>
+
+        <!-- Tabla de eventos -->
+        <div class="events-section">
+            <h3>Mis Eventos</h3>
+            <div class="table-container">
+                {% if eventos %}
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Ubicación</th>
+                                <th>Precio</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for evento in eventos %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ evento.nombre }}</td>
+                                    <td>{{ evento.direccion }}</td>
+                                    <td>{{ evento.ubicacion }}</td>
+                                    <td>${{ evento.precio_renta }}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-primary">Editar</a>
+                                        <a href="#" class="btn btn-danger">Eliminar</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No tienes eventos registrados.</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
 </div>
 {% endblock %}

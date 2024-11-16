@@ -87,8 +87,9 @@ def registrar_evento(request):
 
     return render(request, "eventra/registro_evento.html", {"form": form})
 
-@login_required
-@login_required
+
+
+"""@login_required
 def dashboard(request):
     usuario_actual = request.user
 
@@ -99,3 +100,19 @@ def dashboard(request):
     eventos = Eventos.objects.filter(usuario=usuario_actual)
 
     return render(request, 'eventra/dashboard.html', {'eventos': eventos})
+"""
+
+@login_required
+def dashboard(request):
+    usuario_actual = request.user
+
+    if usuario_actual.tipo_usuario != 'administrativo':
+        return redirect('home')  # Redirige si no es administrativo
+    
+    eventos = Eventos.objects.filter(usuario=usuario_actual)
+
+    return render(request, "eventra/dashboard.html", {
+        "eventos": eventos,
+        "usuario_actual": usuario_actual,
+        "messages": messages.get_messages(request),  # Obtén los mensajes para mostrarlos
+    })

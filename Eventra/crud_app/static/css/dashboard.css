@@ -1,0 +1,194 @@
+/* General layout */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    display: flex;
+    width: 300px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    padding: 20px;
+    height: 100%;
+    flex-direction: column;
+}
+
+.sidebar h5 {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sidebar .nav {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar .nav-link {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #343a40;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+    color: #000;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Main content */
+.main-content {
+    display: flex;
+    padding: 20px;
+    width: 100%;
+    background-color: #fff;
+    flex-direction: column;
+}
+
+/* Title and welcome message */
+.main-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-content p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Messages */
+.messages .alert {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.text-end {
+    width: 100%;
+    text-align: right;
+}
+
+/* Button */
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Events table */
+.events-section {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.events-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.custom-table th,
+.custom-table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+}
+
+.custom-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.custom-table td {
+    background-color: #f8f9fa;
+}
+
+.custom-table tr:nth-child(odd) td {
+    background-color: #f1f1f1;
+}
+
+.custom-table tr:hover td {
+    background-color: #e9ecef;
+}
+
+/* Buttons inside the table */
+.custom-table td .btn {
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+}
+
+.custom-table td .btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.custom-table td .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.custom-table td .btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.custom-table td .btn-danger:hover {
+    background-color: #c82333;
+}

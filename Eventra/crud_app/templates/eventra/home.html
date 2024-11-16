@@ -97,110 +97,27 @@
   <h2>Salas Disponibles</h2>
 
   <section class="tarjetas">
+    {% for evento in eventos %}
     <article class="tarjeta">
       <a href="{% url 'salaDetalles' %}">
         <div class="tarjeta-vista-previa">
           <img
-            src="{% static 'assets/lakeview-elegance.png' %}"
+            src="{{ evento.imagen.url }}"
             alt="Vista previa de Lakeview Elegance"
           />
-          <div class="tarjeta-precio">COP 1.000.000</div>
+          <div class="tarjeta-precio">USD {{ evento.precio_renta }}</div>
         </div>
         <div class="tarjeta-contenido">
-          <h2 class="tarjeta-titulo">Sala 1</h2>
-          <p class="tarjeta-direccion">Dirección</p>
-          <p class="tarjeta-descripcion">Descripción</p>
+          <h2 class="tarjeta-titulo">{{ evento.nombre }}</h2>
+          <p class="tarjeta-direccion"> {{ evento.direccion }}, {{ evento.ubicacion }}</p>
+          <p class="tarjeta-descripcion">{{ evento.descripcion }}</p>
           <div class="tarjeta-inferior">
-            <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
+            <div class="tarjeta-capacidad"></div>
           </div>
         </div>
       </a>
     </article>
-    <article class="tarjeta">
-      <div class="tarjeta-vista-previa">
-        <img
-          src="{% static 'assets/vista-paradiso.png' %}"
-          alt="Vista Paradiso"
-        />
-        <div class="tarjeta-precio">COP 1.000.000</div>
-      </div>
-      <div class="tarjeta-contenido">
-        <h2 class="tarjeta-titulo">Sala 2</h2>
-        <p class="tarjeta-direccion">Dirección</p>
-        <p class="tarjeta-descripcion">Descripción</p>
-        <div class="tarjeta-inferior">
-          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
-        </div>
-      </div>
-    </article>
-    <article class="tarjeta">
-      <div class="tarjeta-vista-previa">
-        <img
-          src="{% static 'assets/skyline-oasis.png' %}"
-          alt="Skyline Oasis"
-        />
-        <div class="tarjeta-precio">COP 1.000.000</div>
-      </div>
-      <div class="tarjeta-contenido">
-        <h2 class="tarjeta-titulo">Sala 3</h2>
-        <p class="tarjeta-direccion">Dirección</p>
-        <p class="tarjeta-descripcion">Descripción</p>
-        <div class="tarjeta-inferior">
-          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
-        </div>
-      </div>
-    </article>
-    <article class="tarjeta">
-      <div class="tarjeta-vista-previa">
-        <img
-          src="{% static 'assets/skyline-oasis.png' %}"
-          alt="Skyline Oasis"
-        />
-        <div class="tarjeta-precio">COP 1.000.000</div>
-      </div>
-      <div class="tarjeta-contenido">
-        <h2 class="tarjeta-titulo">Sala 3</h2>
-        <p class="tarjeta-direccion">Dirección</p>
-        <p class="tarjeta-descripcion">Descripción</p>
-        <div class="tarjeta-inferior">
-          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
-        </div>
-      </div>
-    </article>
-    <article class="tarjeta">
-      <div class="tarjeta-vista-previa">
-        <img
-          src="{% static 'assets/skyline-oasis.png' %}"
-          alt="Skyline Oasis"
-        />
-        <div class="tarjeta-precio">COP 1.000.000</div>
-      </div>
-      <div class="tarjeta-contenido">
-        <h2 class="tarjeta-titulo">Sala 3</h2>
-        <p class="tarjeta-direccion">Dirección</p>
-        <p class="tarjeta-descripcion">Descripción</p>
-        <div class="tarjeta-inferior">
-          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
-        </div>
-      </div>
-    </article>
-    <article class="tarjeta">
-      <div class="tarjeta-vista-previa">
-        <img
-          src="{% static 'assets/skyline-oasis.png' %}"
-          alt="Skyline Oasis"
-        />
-        <div class="tarjeta-precio">COP 1.000.000</div>
-      </div>
-      <div class="tarjeta-contenido">
-        <h2 class="tarjeta-titulo">Sala 3</h2>
-        <p class="tarjeta-direccion">Dirección</p>
-        <p class="tarjeta-descripcion">Descripción</p>
-        <div class="tarjeta-inferior">
-          <div class="tarjeta-capacidad">Capacidad: 20 Personas</div>
-        </div>
-      </div>
-    </article>
+    {% endfor %} 
   </section>
 </section>
 {% endblock %}
