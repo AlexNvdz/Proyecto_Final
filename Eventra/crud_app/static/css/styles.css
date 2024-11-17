@@ -192,8 +192,8 @@ h2 {
 }
 
 footer {
-  background: var(--background); /* Cambia según tu diseño */
-  color: var(--text); /* Cambia según tu diseño */
+  background: var(--background);
+  color: var(--text);
   padding: 1rem;
   text-align: center;
   margin-top: auto;
@@ -269,6 +269,10 @@ footer {
 
 .dropdown__wrapper h2 {
   font-size: 1.15rem;
+}
+
+.dropdown__wrapper a {
+  user-select: none;
 }
 
 .dropdown__wrapper--fade-in {
@@ -361,6 +365,3 @@ nav > ul > li > svg {
 nav > ul > li:hover > svg {
   stroke: var(--text);
 }
-
-
-

@@ -18,7 +18,9 @@
     <link rel="stylesheet" href="{% static 'css/stylesHome.css'%}" />
     <link rel="stylesheet" href="{% static 'css/stylesIndex.css'%}" />
     <link href="{% static 'css/stylesDetalle.css' %}" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+    
+
     <title>Eventra</title>
   </head>
   <body>
@@ -70,7 +72,8 @@
 
                 {% if usuario_actual.tipo_usuario == 'administrativo' %}
                 <li>
-                  <a  href="{% url 'dashboard' %}">Dashboard</a>
+                  <i class="fa-solid fa-chart-line"></i>
+                  <a href="{% url 'dashboard' %}">Dashboard</a>
                 </li>
                 {% endif %}
                 <li>
