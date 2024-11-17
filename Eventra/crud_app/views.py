@@ -116,3 +116,10 @@ def dashboard(request):
         "usuario_actual": usuario_actual,
         "messages": messages.get_messages(request),  # Obtén los mensajes para mostrarlos
     })
+
+
+def detalle_evento(request, evento_id):
+    evento = get_object_or_404(Eventos, id=evento_id)
+    return render(request, 'eventra/salaDetalles.html', {
+        'evento': evento
+    })
