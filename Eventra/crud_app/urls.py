@@ -14,7 +14,9 @@ urlpatterns = [
 
     #cambios
      path("registrar_evento/", views.registrar_evento, name="registrar_evento"),
-     path('dashboard/', views.dashboard, name='dashboard'),
+     path('dashboard/eventos/', views.dashboard, name='dashboard'),
      path('sala/<int:evento_id>/', views.sala_detalles, name='sala_detalles'),
      path('dashboard/reservas/', views.administrar_reservas, name='administrar_reservas'),
+     path('evento/eliminar/<int:evento_id>/', views.eliminar_evento, name='eliminar_evento'),
+     path('reserva/eliminar/<int:reserva_id>/', views.eliminar_reserva, name='eliminar_reserva'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

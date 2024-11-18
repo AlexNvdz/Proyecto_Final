@@ -88,20 +88,6 @@ def registrar_evento(request):
     return render(request, "eventra/registro_evento.html", {"form": form})
 
 
-
-"""@login_required
-def dashboard(request):
-    usuario_actual = request.user
-
-    if usuario_actual.tipo_usuario != 'administrativo':
-        return redirect('home')  # Redirige si no es administrativo
-
-    # Obtener los eventos asociados al usuario actual
-    eventos = Eventos.objects.filter(usuario=usuario_actual)
-
-    return render(request, 'eventra/dashboard.html', {'eventos': eventos})
-"""
-
 @login_required
 def dashboard(request):
     usuario_actual = request.user
@@ -117,13 +103,6 @@ def dashboard(request):
         "messages": messages.get_messages(request),  # Obtén los mensajes para mostrarlos
     })
 
-"""
-def detalle_evento(request, evento_id):
-    evento = get_object_or_404(Eventos, id=evento_id)
-    return render(request, 'eventra/salaDetalles.html', {
-        'evento': evento
-    })
-"""
 
 def sala_detalles(request, evento_id):
     evento = get_object_or_404(Eventos, id=evento_id)
@@ -159,6 +138,7 @@ def sala_detalles(request, evento_id):
 
     return render(request, 'eventra/salaDetalles.html', {'evento': evento})
 
+@login_required
 def administrar_reservas(request):
     # Obtener el usuario actual
     usuario_actual = request.user
@@ -170,3 +150,40 @@ def administrar_reservas(request):
     reservas = Reserva.objects.filter(evento__usuario=usuario_actual)
 
     return render(request, 'eventra/dash_reservas.html', {'reservas': reservas})
+
+
+
+# ELIMINAR DATOS FUNCIONES 
+@login_required
+def eliminar_evento(request, evento_id):
+    eventos = get_object_or_404(Eventos, id=evento_id)
+    
+    usuario_actual = request.user
+
+    if usuario_actual.tipo_usuario != 'administrativo':
+        return redirect('home')  # Redirige si no es administrativo
+    # Eliminar el evento
+    eventos.delete()
+    
+    # Mensaje de éxito
+    messages.success(request, 'Evento eliminado exitosamente.')
+    
+    # Redirigir a la vista de eventos (o dashboard, según lo necesites)
+    return redirect('dashboard')
+
+@login_required
+def eliminar_reserva(request, reserva_id):
+    reserva = get_object_or_404(Reserva, id=reserva_id)
+    
+    usuario_actual = request.user
+
+    if usuario_actual.tipo_usuario != 'administrativo':
+        return redirect('home')  # Redirige si no es administrativo
+    # Eliminar la reserva
+    reserva.delete()
+    
+    # Mensaje de éxito
+    messages.success(request, 'Reserva eliminada exitosamente.')
+    
+    # Redirigir a la vista de reservas
+    return redirect('administrar_reservas')
