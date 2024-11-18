@@ -63,3 +63,29 @@ class Eventos(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+
+
+
+
+    #### CAMBIOS NUEVOS ####
+
+
+class Reserva(models.Model):
+    usuario_reserva = models.ForeignKey(
+        Usuario, on_delete=models.CASCADE, related_name="reservas_realizadas"
+    )  # Usuario que hace la reserva
+    evento = models.ForeignKey(
+        Eventos, on_delete=models.CASCADE, related_name="reservas"
+    )  # Evento reservado
+    fecha = models.DateField()
+    hora = models.TimeField()
+    numero_invitados = models.PositiveIntegerField()
+    duracion = models.PositiveIntegerField(help_text="Duración en horas")
+    correo_usuario = models.EmailField()
+
+    # Opcional: agregar timestamp
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Reserva de {self.usuario_reserva.nombre} para {self.evento.nombre}"
