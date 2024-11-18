@@ -7,7 +7,7 @@
       <li>
         <a href="{% url 'dashboard' %}" class="nav-link">Administrar Salas</a>
       </li>
-      <li><a href="#" class="nav-link">Administrar Reservas</a></li>
+      <li><a href="{% url 'administrar_reservas' %}" class="nav-link">Administrar Reservas</a></li>
     </ul>
   </nav>
 
@@ -27,35 +27,30 @@
     <!-- Tabla de eventos -->
     <div class="events-section">
       <!-- Botón para agregar eventos -->
-      <div class="text-end">
-        <a href="{% url 'registrar_evento' %}" class="btn-success"
-          >Agregar Sala</a
-        >
-      </div>
-      <h3>Mis Salas</h3>
+      <h3>Reservas de Clientes</h3>
       <div class="table-container">
-        {% if eventos %}
+        {% if reservas %}
         <table class="custom-table">
           <thead>
             <tr>
               <th>#</th>
-              <th>Nombre</th>
-              <th>Dirección</th>
-              <th>Ubicación</th>
-              <th>Precio</th>
+              <th>Evento</th>
+              <th>Usuario</th>
+              <th>Correo</th>
+              <th>Fecha</th>
               <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
-            {% for evento in eventos %}
+            {% for reserva in reservas %}
             <tr>
               <td>{{ forloop.counter }}</td>
-              <td>{{ evento.nombre }}</td>
-              <td>{{ evento.direccion }}</td>
-              <td>{{ evento.ubicacion }}</td>
-              <td>${{ evento.precio_renta }}</td>
+              <td>{{ reserva.evento.nombre }}</td>
+              <td>{{ reserva.usuario_reserva.usuario }}</td>
+              <td>{{ reserva.usuario_reserva.correo }}</td>
+              <td>{{ reserva.fecha }}</td>
               <td>
-                <a href="#" class="btn btn-primary">Editar</a>
+                <a href="#" class="btn btn-primary">Detalles</a>
                 <a href="#" class="btn btn-danger">Eliminar</a>
               </td>
             </tr>
@@ -63,7 +58,7 @@
           </tbody>
         </table>
         {% else %}
-        <p>No tienes salas registradas.</p>
+        <p>No tienes reservas registradas.</p>
         {% endif %}
       </div>
     </div>

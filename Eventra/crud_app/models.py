@@ -82,10 +82,6 @@ class Reserva(models.Model):
     hora = models.TimeField()
     numero_invitados = models.PositiveIntegerField()
     duracion = models.PositiveIntegerField(help_text="Duración en horas")
-    correo_usuario = models.EmailField()
-
-    # Opcional: agregar timestamp
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Reserva de {self.usuario_reserva.nombre} para {self.evento.nombre}"
+        return f"Reserva de {self.usuario_reserva.usuario} para {self.evento.nombre}"

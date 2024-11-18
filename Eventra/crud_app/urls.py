@@ -15,5 +15,6 @@ urlpatterns = [
     #cambios
      path("registrar_evento/", views.registrar_evento, name="registrar_evento"),
      path('dashboard/', views.dashboard, name='dashboard'),
-     path('evento/<int:evento_id>/', views.detalle_evento, name='detalle_evento'),
+     path('sala/<int:evento_id>/', views.sala_detalles, name='sala_detalles'),
+     path('dashboard/reservas/', views.administrar_reservas, name='administrar_reservas'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

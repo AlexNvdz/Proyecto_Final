@@ -75,7 +75,7 @@
     </div>
     <div id="events">
       {% for evento in eventos %}
-        <a href="{% url 'detalle_evento' evento.id %}" class="event">
+        <a href="{% url 'sala_detalles' evento.id %}" class="event">
           <div class="event__image">
             <img
               src="{{ evento.imagen.url }}"
@@ -99,7 +99,7 @@
   <section class="tarjetas">
     {% for evento in eventos %}
     <article class="tarjeta">
-      <a href="{% url 'detalle_evento' evento.id %}">
+      <a href="{% url 'sala_detalles' evento.id %}">
         <div class="tarjeta-vista-previa">
           <img
             src="{{ evento.imagen.url }}"

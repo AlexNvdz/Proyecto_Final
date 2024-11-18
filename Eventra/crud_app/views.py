@@ -3,7 +3,7 @@ from django.contrib import messages
 from .forms import RegistroUsuarioForm, EventoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout
-from .models import Usuario, Eventos
+from .models import Usuario, Eventos, Reserva
 
 
 
@@ -117,9 +117,56 @@ def dashboard(request):
         "messages": messages.get_messages(request),  # Obtén los mensajes para mostrarlos
     })
 
-
+"""
 def detalle_evento(request, evento_id):
     evento = get_object_or_404(Eventos, id=evento_id)
     return render(request, 'eventra/salaDetalles.html', {
         'evento': evento
     })
+"""
+
+def sala_detalles(request, evento_id):
+    evento = get_object_or_404(Eventos, id=evento_id)
+
+    if request.method == 'POST':
+        # Verificar si el usuario está autenticado
+        if not request.user.is_authenticated:
+            messages.error(request, 'Debes iniciar sesión para realizar una reserva.')
+            return redirect('sala_detalles', evento_id=evento.id)  # Redirigir al login si el usuario no está autenticado
+
+        # Recibimos los datos del formulario
+        fecha = request.POST.get('fecha')
+        hora = request.POST.get('hora')
+        numero_invitados = request.POST.get('numero_invitados')
+        duracion = request.POST.get('duracion')
+
+        # Obtener el usuario autenticado
+        usuario = request.user
+
+        # Creamos la reserva con el correo del usuario
+        reserva = Reserva.objects.create(
+            fecha=fecha,
+            hora=hora,
+            numero_invitados=numero_invitados,
+            duracion=duracion,
+            evento=evento,
+            usuario_reserva=usuario,
+        )
+        reserva.save()
+
+        messages.success(request, 'Reserva realizada con éxito.')
+        return redirect('sala_detalles', evento_id=evento.id)  # Redirigimos a la misma página
+
+    return render(request, 'eventra/salaDetalles.html', {'evento': evento})
+
+def administrar_reservas(request):
+    # Obtener el usuario actual
+    usuario_actual = request.user
+
+    if usuario_actual.tipo_usuario != 'administrativo':
+        return redirect('home')  # Redirige si no es administrativo
+
+    # Filtrar reservas según eventos creados por el usuario administrativo actual
+    reservas = Reserva.objects.filter(evento__usuario=usuario_actual)
+
+    return render(request, 'eventra/dash_reservas.html', {'reservas': reservas})
