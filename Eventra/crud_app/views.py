@@ -4,6 +4,8 @@ from .forms import RegistroUsuarioForm, EventoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from .models import Usuario, Eventos, Reserva
+from django.conf import settings
+import os
 
 
 
@@ -155,22 +157,34 @@ def administrar_reservas(request):
 
 
 # ELIMINAR DATOS FUNCIONES 
+
+
 @login_required
 def eliminar_evento(request, evento_id):
-    eventos = get_object_or_404(Eventos, id=evento_id)
-    
+    evento = get_object_or_404(Eventos, id=evento_id)
     usuario_actual = request.user
 
     if usuario_actual.tipo_usuario != 'administrativo':
         return redirect('home')  # Redirige si no es administrativo
-    # Eliminar el evento
-    eventos.delete()
     
+    # Verificar si el evento tiene una imagen asociada y eliminarla
+    if evento.imagen:
+        # Obtener la ruta completa de la imagen
+        image_path = os.path.join(settings.MEDIA_ROOT, evento.imagen.name)
+        
+        # Verificar si el archivo existe y eliminarlo
+        if os.path.exists(image_path):
+            os.remove(image_path)
+
+    # Eliminar el evento
+    evento.delete()
+
     # Mensaje de éxito
     messages.success(request, 'Evento eliminado exitosamente.')
-    
+
     # Redirigir a la vista de eventos (o dashboard, según lo necesites)
     return redirect('dashboard')
+
 
 @login_required
 def eliminar_reserva(request, reserva_id):
@@ -189,42 +203,32 @@ def eliminar_reserva(request, reserva_id):
     # Redirigir a la vista de reservas
     return redirect('administrar_reservas')
 
-"""
+
 def editar_evento(request, evento_id):
     evento = get_object_or_404(Eventos, id=evento_id)
 
+    # Guardar la ruta de la imagen actual antes de procesar el formulario
+    old_image_path = evento.imagen.path if evento.imagen else None
+
     if request.method == 'POST':
         form = EventoForm(request.POST, request.FILES, instance=evento)
+
         if form.is_valid():
+            # Si se ha subido una nueva imagen
+            if 'imagen' in request.FILES:
+                # Eliminar la imagen antigua si existe
+                if old_image_path and os.path.exists(old_image_path):
+
+                    os.remove(old_image_path)
+
+            # Guardar el evento con la nueva imagen (si se subió una)
             form.save()
-            messages.success(request, "Evento actualizado con éxito")
-            return redirect('dashboard')  # Redirige al dashboard o a donde quieras
+
+            messages.success(request, 'Evento con nombre: ' + evento.nombre + ',  editado correctamente.' )
+
+            return redirect('dashboard')  # Redirigir al dashboard
+
     else:
         form = EventoForm(instance=evento)
 
     return render(request, 'administrativo/editar_evento.html', {'form': form, 'evento': evento})
-"""
-
-def editar_evento(request, evento_id):
-    evento = get_object_or_404(Eventos, id=evento_id)
-
-    if request.method == 'POST':
-        form = EventoForm(request.POST, request.FILES, instance=evento)
-        
-        # Comprobar si el formulario es válido
-        if form.is_valid():
-            # Si se ha subido una nueva imagen, eliminar la imagen antigua
-            if 'imagen' in request.FILES:
-                # Eliminar la imagen antigua si existe
-                if evento.imagen:
-                    old_image_path = os.path.join(settings.MEDIA_ROOT, evento.imagen.name)
-                    if os.path.exists(old_image_path):
-                        os.remove(old_image_path)
-
-            # Guardar el evento con la nueva imagen (si se subió una)
-            form.save()
-            return redirect('evento:detalle_evento', evento_id=evento.id)
-    else:
-        form = EventoForm(instance=evento)
-
-    return render(request, 'editar_evento.html', {'form': form, 'evento': evento})
