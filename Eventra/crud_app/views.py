@@ -7,6 +7,7 @@ from .models import Usuario, Eventos, Reserva
 
 
 
+
 def registrar_usuario(request):
     if request.method == "POST":
         form = RegistroUsuarioForm(request.POST)
@@ -85,7 +86,7 @@ def registrar_evento(request):
     else:
         form = EventoForm()  # Formulario vacío para GET
 
-    return render(request, "eventra/registro_evento.html", {"form": form})
+    return render(request, "administrativo/registro_evento.html", {"form": form})
 
 
 @login_required
@@ -97,7 +98,7 @@ def dashboard(request):
     
     eventos = Eventos.objects.filter(usuario=usuario_actual)
 
-    return render(request, "eventra/dashboard.html", {
+    return render(request, "administrativo/dashboard.html", {
         "eventos": eventos,
         "usuario_actual": usuario_actual,
         "messages": messages.get_messages(request),  # Obtén los mensajes para mostrarlos
@@ -149,7 +150,7 @@ def administrar_reservas(request):
     # Filtrar reservas según eventos creados por el usuario administrativo actual
     reservas = Reserva.objects.filter(evento__usuario=usuario_actual)
 
-    return render(request, 'eventra/dash_reservas.html', {'reservas': reservas})
+    return render(request, 'administrativo/dash_reservas.html', {'reservas': reservas})
 
 
 
@@ -187,3 +188,43 @@ def eliminar_reserva(request, reserva_id):
     
     # Redirigir a la vista de reservas
     return redirect('administrar_reservas')
+
+"""
+def editar_evento(request, evento_id):
+    evento = get_object_or_404(Eventos, id=evento_id)
+
+    if request.method == 'POST':
+        form = EventoForm(request.POST, request.FILES, instance=evento)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Evento actualizado con éxito")
+            return redirect('dashboard')  # Redirige al dashboard o a donde quieras
+    else:
+        form = EventoForm(instance=evento)
+
+    return render(request, 'administrativo/editar_evento.html', {'form': form, 'evento': evento})
+"""
+
+def editar_evento(request, evento_id):
+    evento = get_object_or_404(Eventos, id=evento_id)
+
+    if request.method == 'POST':
+        form = EventoForm(request.POST, request.FILES, instance=evento)
+        
+        # Comprobar si el formulario es válido
+        if form.is_valid():
+            # Si se ha subido una nueva imagen, eliminar la imagen antigua
+            if 'imagen' in request.FILES:
+                # Eliminar la imagen antigua si existe
+                if evento.imagen:
+                    old_image_path = os.path.join(settings.MEDIA_ROOT, evento.imagen.name)
+                    if os.path.exists(old_image_path):
+                        os.remove(old_image_path)
+
+            # Guardar el evento con la nueva imagen (si se subió una)
+            form.save()
+            return redirect('evento:detalle_evento', evento_id=evento.id)
+    else:
+        form = EventoForm(instance=evento)
+
+    return render(request, 'editar_evento.html', {'form': form, 'evento': evento})

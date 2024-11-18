@@ -71,7 +71,7 @@
               <td>{{ evento.ubicacion }}</td>
               <td>${{ evento.precio_renta }}</td>
               <td>
-                <a href="#" class="btn btn-primary">Editar</a>
+                <a href="{% url 'editar_evento' evento.id %}" class="btn btn-primary">Editar</a>
                 <button class="btn btn-danger" onclick="showModal({{ evento.id }})">Eliminar</button>
               </td>
             </tr>

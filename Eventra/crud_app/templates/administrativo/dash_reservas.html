@@ -1,0 +1,312 @@
+{% extends "eventra/base.html" %} {% block contenido %} {% load static %}
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h5>Menú</h5>
+    <ul class="nav">
+      <li>
+        <a href="{% url 'dashboard' %}" class="nav-link">Administrar Salas</a>
+      </li>
+      <li><a href="{% url 'administrar_reservas' %}" class="nav-link">Administrar Reservas</a></li>
+    </ul>
+  </nav>
+
+  <!-- Modal de detalles de la reserva -->
+  <div id="detailsModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Detalles de la Reserva</h5>
+        <span class="close-btn" onclick="closeDetailsModal()">×</span>
+      </div>
+      <div class="modal-body">
+        <p><strong>Usuario:</strong> <span id="modalUsuario"></span></p>
+        <p><strong>Contacto:</strong> <span id="modalCorreo"></span></p>
+        <p><strong>Evento:</strong> <span id="modalEvento"></span></p>
+        <p><strong>Fecha:</strong> <span id="modalFecha"></span></p>
+        <p><strong>Hora:</strong> <span id="modalHora"></span></p>
+        <p><strong>Número de Invitados:</strong> <span id="modalInvitados"></span></p>
+        <p><strong>Duración:</strong> <span id="modalDuracion"></span> horas</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeDetailsModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Confirmar Eliminación</h5>
+        <span class="close-btn" onclick="closeModal()">×</span>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que deseas eliminar esta reserva?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-danger" id="deleteBtn">Eliminar</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <h2>Panel de Administración</h2>
+
+    <!-- Mensajes de éxito o error -->
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Tabla de eventos -->
+    <div class="events-section">
+      <!-- Botón para agregar eventos -->
+      <h3>Reservas de Clientes</h3>
+      <div class="table-container">
+        {% if reservas %}
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Evento</th>
+              <th>Usuario</th>
+              <th>Correo</th>
+              <th>Fecha</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for reserva in reservas %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ reserva.evento.nombre }}</td>
+              <td>{{ reserva.usuario_reserva.usuario }}</td>
+              <td>{{ reserva.usuario_reserva.correo }}</td>
+              <td>{{ reserva.fecha }}</td>
+              <td>
+                <button
+                  class="btn btn-info btn-detalles"
+                  data-usuario="{{ reserva.usuario_reserva.usuario }}"
+                  data-evento="{{ reserva.evento.nombre }}"
+                  data-fecha="{{ reserva.fecha }}"
+                  data-hora="{{ reserva.hora }}" 
+                  data-invitados="{{ reserva.numero_invitados }}"
+                  data-duracion="{{ reserva.duracion }}"
+                  data-correo="{{ reserva.usuario_reserva.correo }}"
+                >
+                  Detalles
+                </button>
+                <button class="btn btn-danger" onclick="showModal( {{ reserva.id }} )">Eliminar</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>No tienes reservas registradas.</p>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+</div>
+
+
+<style>
+  /* Fondo del Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Inicialmente oculto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; /* Asegura que esté por encima de todo */
+  }
+
+  /* Estilo del contenido del modal */
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Cabecera del modal */
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  /* Estilo del título */
+  .modal-header h5 {
+    margin: 0;
+  }
+
+  /* Estilo del botón de cerrar */
+  .close-btn {
+    cursor: pointer;
+    font-size: 24px;
+    color: #888;
+  }
+
+  /* Cuerpo del modal */
+  .modal-body {
+    margin: 20px 0;
+  }
+
+  /* Footer con botones */
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  /* Estilo de los botones */
+  .modal-footer button {
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+
+
+
+
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Inicialmente oculto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+  }
+
+  /* Estilo del contenido del modal */
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Cabecera del modal */
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  /* Estilo del título */
+  .modal-header h5 {
+    margin: 0;
+  }
+
+  /* Estilo del botón de cerrar */
+  .close-btn {
+    cursor: pointer;
+    font-size: 24px;
+    color: #888;
+  }
+
+  /* Cuerpo del modal */
+  .modal-body {
+    margin: 20px 0;
+  }
+
+  /* Footer con botones */
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  /* Estilo de los botones */
+  .modal-footer button {
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+
+
+  
+</style>
+
+<script>
+  // Función para mostrar el modal y cargar los datos de la reserva
+  function showDetailsModal(event) {
+    // Obtener los datos del botón
+    const usuario = event.target.getAttribute('data-usuario');
+    const evento = event.target.getAttribute('data-evento');
+    const fecha = event.target.getAttribute('data-fecha');
+    const hora = event.target.getAttribute('data-hora');
+    const invitados = event.target.getAttribute('data-invitados');
+    const duracion = event.target.getAttribute('data-duracion');
+    const correo = event.target.getAttribute('data-correo');
+
+    // Asignar los datos al modal
+    document.getElementById('modalUsuario').innerText = usuario;
+    document.getElementById('modalEvento').innerText = evento;
+    document.getElementById('modalFecha').innerText = fecha;
+    document.getElementById('modalHora').innerText = hora;
+    document.getElementById('modalInvitados').innerText = invitados;
+    document.getElementById('modalDuracion').innerText = duracion;
+    document.getElementById('modalCorreo').innerText = correo;
+
+    // Mostrar el modal
+    document.getElementById('detailsModal').style.display = 'flex';
+  }
+
+  // Función para cerrar el modal
+  function closeDetailsModal() {
+    document.getElementById('detailsModal').style.display = 'none';
+  }
+
+  // Agregar listener al botón de "Detalles"
+  document.addEventListener('DOMContentLoaded', function () {
+    const botonesDetalles = document.querySelectorAll('.btn-detalles');
+    botonesDetalles.forEach(function (boton) {
+      boton.addEventListener('click', showDetailsModal);
+    });
+  });
+</script>
+
+
+<script src="{% static 'js/dlReserva.js' %}"></script>
+
+
+{% endblock %}

@@ -136,6 +136,6 @@ AUTHENTICATION_BACKENDS = [
 
 
 ### cambios ### 
-
+LOGIN_URL = '/login/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'crud_app/static/uploads'

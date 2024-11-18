@@ -19,4 +19,5 @@ urlpatterns = [
      path('dashboard/reservas/', views.administrar_reservas, name='administrar_reservas'),
      path('evento/eliminar/<int:evento_id>/', views.eliminar_evento, name='eliminar_evento'),
      path('reserva/eliminar/<int:reserva_id>/', views.eliminar_reserva, name='eliminar_reserva'),
+     path('editar_evento/<int:evento_id>/', views.editar_evento, name='editar_evento'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
