@@ -6,6 +6,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 from .models import Usuario, Eventos, Reserva
 from django.conf import settings
 import os
+from django.http import JsonResponse
 
 
 
@@ -232,3 +233,15 @@ def editar_evento(request, evento_id):
         form = EventoForm(instance=evento)
 
     return render(request, 'administrativo/editar_evento.html', {'form': form, 'evento': evento})
+
+
+def search_events(request):
+    query = request.GET.get('query', '')
+    if query:
+        # Filtrar eventos que contengan la consulta en su nombre
+        eventos = Eventos.objects.filter(nombre__icontains=query)
+        results = [{'id': evento.id, 'nombre': evento.nombre} for evento in eventos]
+    else:
+        results = []
+
+    return JsonResponse({'results': results})

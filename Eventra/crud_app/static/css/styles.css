@@ -365,3 +365,11 @@ nav > ul > li > svg {
 nav > ul > li:hover > svg {
   stroke: var(--text);
 }
+
+.search-results{
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  z-index: 10;
+}
