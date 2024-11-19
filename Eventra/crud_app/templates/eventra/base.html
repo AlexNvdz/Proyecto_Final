@@ -33,19 +33,30 @@
           <div class="search-container">
             <div class="box">
               <input
+                id="search-input"
                 class="search"
                 type="text"
                 placeholder=""
                 spellcheck="false"
+                oninput="searchEvents()"
               />
             </div>
           </div>
+
+          <div id="search-results" class="search-results">
+              
+          </div> <!-- Contenedor de resultados -->
+  
           <style>
             :root {
               --search-icon-url: url("{% static 'assets/search-bold.svg' %}");
             }
           </style>
         </div>
+
+
+        
+
         <div class="right-section">
           <div class="location-dropdown">
             <span>Ubicación</span>
@@ -120,6 +131,7 @@
     </script>
     <script src="{% static 'js/scriptCarrusel.js' %}"></script>
     <script src="{% static 'js/scriptDropMenuUser.js' %}"></script>
+    <script src="{% static 'js/search_items.js' %}"></script>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
