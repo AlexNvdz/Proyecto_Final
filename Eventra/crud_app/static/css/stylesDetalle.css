@@ -350,10 +350,15 @@ input[type="number"]:focus {
   color: var(--tarjeta);
   background-color: var(--primary);
   border-color: var(--primary);
+  margin: 1rem 0 1rem 0;
 }
 
 .btn.btn-primary:hover {
   cursor: pointer;
   background-color: var(--primary-dark);
   border-color: var(--primary);
+}
+
+.alert {
+  margin-top: 1rem;
 }

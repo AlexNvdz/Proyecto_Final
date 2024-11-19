@@ -1,0 +1,93 @@
+/* Contenedor del formulario con márgenes y límite de altura */
+.form-container {
+  max-width: 700px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 8px;
+  border: 2px solid var(--background-dark);
+  margin: 50px auto; /* Márgenes superior e inferior para evitar que se tape */
+}
+
+/* Título */
+.form-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Campos de formulario */
+.text-field {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.form-label {
+  display: block;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: var(--background-dark);
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Alertas de mensaje */
+.alert {
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Ocultar el input de tipo file */
+.file-upload input[type="file"] {
+  display: none;
+}
+
+/* Estilo del label como botón */
+.custom-file-label {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  padding: 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-label:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Ajustar el contenedor */
+.file-upload {
+  margin: 1rem 0 1rem 0;
+}
+
+.file-name {
+  display: inline-block;
+  margin-left: 15px;
+  font-size: 14px;
+  color: #6c757d;
+  font-style: italic;
+}
