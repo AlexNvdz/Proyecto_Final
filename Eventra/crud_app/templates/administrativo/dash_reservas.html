@@ -7,7 +7,11 @@
       <li>
         <a href="{% url 'dashboard' %}" class="nav-link">Administrar Salas</a>
       </li>
-      <li><a href="{% url 'administrar_reservas' %}" class="nav-link">Administrar Reservas</a></li>
+      <li>
+        <a href="{% url 'administrar_reservas' %}" class="nav-link"
+          >Administrar Reservas</a
+        >
+      </li>
     </ul>
   </nav>
 
@@ -24,11 +28,16 @@
         <p><strong>Sala:</strong> <span id="modalEvento"></span></p>
         <p><strong>Fecha:</strong> <span id="modalFecha"></span></p>
         <p><strong>Hora:</strong> <span id="modalHora"></span></p>
-        <p><strong>Número de Invitados:</strong> <span id="modalInvitados"></span></p>
+        <p>
+          <strong>Número de Invitados:</strong>
+          <span id="modalInvitados"></span>
+        </p>
         <p><strong>Duración:</strong> <span id="modalDuracion"></span> horas</p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeDetailsModal()">Cerrar</button>
+        <button class="btn btn-secondary" onclick="closeDetailsModal()">
+          Cerrar
+        </button>
       </div>
     </div>
   </div>
@@ -43,12 +52,14 @@
         <p>¿Estás seguro de que deseas eliminar esta reserva?</p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-secondary" onclick="closeModal()">
+          Cancelar
+        </button>
         <button class="btn btn-danger" id="deleteBtn">Eliminar</button>
       </div>
     </div>
   </div>
-  
+
   <!-- Contenido principal -->
   <main class="main-content">
     <h2>Panel de Administración</h2>
@@ -65,7 +76,7 @@
     <!-- Tabla de eventos -->
     <div class="events-section">
       <!-- Botón para agregar eventos -->
-      <h3>Reservas de Clientes</h3>
+      <h3>Peticiones de Reserva</h3>
       <div class="table-container">
         {% if reservas %}
         <table class="custom-table">
@@ -93,27 +104,31 @@
                   data-usuario="{{ reserva.usuario_reserva.usuario }}"
                   data-evento="{{ reserva.evento.nombre }}"
                   data-fecha="{{ reserva.fecha }}"
-                  data-hora="{{ reserva.hora }}" 
+                  data-hora="{{ reserva.hora }}"
                   data-invitados="{{ reserva.numero_invitados }}"
                   data-duracion="{{ reserva.duracion }}"
                   data-correo="{{ reserva.usuario_reserva.correo }}"
                 >
                   Detalles
                 </button>
-                <button class="btn btn-danger" onclick="showModal( {{ reserva.id }} )">Eliminar</button>
+                <button
+                  class="btn btn-danger"
+                  onclick="showModal( {{ reserva.id }} )"
+                >
+                  Eliminar
+                </button>
               </td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
         {% else %}
-        <p>No tienes reservas registradas.</p>
+        <p>No tienes peticiones de reservas registradas.</p>
         {% endif %}
       </div>
     </div>
   </main>
 </div>
-
 
 <style>
   /* Fondo del Modal */
@@ -190,10 +205,6 @@
     color: white;
   }
 
-
-
-
-
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -261,52 +272,47 @@
     background-color: #6c757d;
     color: white;
   }
-
-
-  
 </style>
 
 <script>
   // Función para mostrar el modal y cargar los datos de la reserva
   function showDetailsModal(event) {
     // Obtener los datos del botón
-    const usuario = event.target.getAttribute('data-usuario');
-    const evento = event.target.getAttribute('data-evento');
-    const fecha = event.target.getAttribute('data-fecha');
-    const hora = event.target.getAttribute('data-hora');
-    const invitados = event.target.getAttribute('data-invitados');
-    const duracion = event.target.getAttribute('data-duracion');
-    const correo = event.target.getAttribute('data-correo');
+    const usuario = event.target.getAttribute("data-usuario");
+    const evento = event.target.getAttribute("data-evento");
+    const fecha = event.target.getAttribute("data-fecha");
+    const hora = event.target.getAttribute("data-hora");
+    const invitados = event.target.getAttribute("data-invitados");
+    const duracion = event.target.getAttribute("data-duracion");
+    const correo = event.target.getAttribute("data-correo");
 
     // Asignar los datos al modal
-    document.getElementById('modalUsuario').innerText = usuario;
-    document.getElementById('modalEvento').innerText = evento;
-    document.getElementById('modalFecha').innerText = fecha;
-    document.getElementById('modalHora').innerText = hora;
-    document.getElementById('modalInvitados').innerText = invitados;
-    document.getElementById('modalDuracion').innerText = duracion;
-    document.getElementById('modalCorreo').innerText = correo;
+    document.getElementById("modalUsuario").innerText = usuario;
+    document.getElementById("modalEvento").innerText = evento;
+    document.getElementById("modalFecha").innerText = fecha;
+    document.getElementById("modalHora").innerText = hora;
+    document.getElementById("modalInvitados").innerText = invitados;
+    document.getElementById("modalDuracion").innerText = duracion;
+    document.getElementById("modalCorreo").innerText = correo;
 
     // Mostrar el modal
-    document.getElementById('detailsModal').style.display = 'flex';
+    document.getElementById("detailsModal").style.display = "flex";
   }
 
   // Función para cerrar el modal
   function closeDetailsModal() {
-    document.getElementById('detailsModal').style.display = 'none';
+    document.getElementById("detailsModal").style.display = "none";
   }
 
   // Agregar listener al botón de "Detalles"
-  document.addEventListener('DOMContentLoaded', function () {
-    const botonesDetalles = document.querySelectorAll('.btn-detalles');
+  document.addEventListener("DOMContentLoaded", function () {
+    const botonesDetalles = document.querySelectorAll(".btn-detalles");
     botonesDetalles.forEach(function (boton) {
-      boton.addEventListener('click', showDetailsModal);
+      boton.addEventListener("click", showDetailsModal);
     });
   });
 </script>
 
-
 <script src="{% static 'js/dlReserva.js' %}"></script>
-
 
 {% endblock %}

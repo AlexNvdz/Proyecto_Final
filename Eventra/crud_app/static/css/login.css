@@ -189,9 +189,8 @@ body {
   align-items: center;
   padding: 2rem;
   border-radius: 2rem;
-  background: url("https://img.freepik.com/vector-gratis/fondo-azul-clasico-abstracto_23-2148428924.jpg?t=st=1731095573~exp=1731099173~hmac=7e014cb1e777907820adc6c5cdbd3c4c7857a0ce275e08089285c784386c65c9&w=1060")
-    repeat center center;
-  background-position: cover;
+  background: var(--imgLogin2);
+  background-size: cover;
   max-height: 90rem;
 }
 

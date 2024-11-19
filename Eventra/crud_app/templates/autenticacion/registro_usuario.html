@@ -13,6 +13,11 @@
       rel="stylesheet"
     />
   </head>
+  <style>
+    :root {
+      --imgLogin2: url("{% static 'assets/imgLogin2.jpg' %}");
+    }
+  </style>
 
   <body>
     <div class="form-wrapper">
@@ -59,7 +64,11 @@
 
       <aside class="info-side">
         <div class="blockquote-wrapper">
-          <img src="https://img.freepik.com/vector-gratis/composicion-banca-oficina-isometrica_1284-37701.jpg?t=st=1731095455~exp=1731099055~hmac=9e329192d848cd7011f7903b160a01ed6f332d60e402159a5fc840b86a9d35b6&w=740" alt="img-room" class="returns" />
+          <img
+            src="{% static 'assets/imgLogin1.jpg' %}"
+            alt="img-room"
+            class="returns"
+          />
         </div>
       </aside>
     </div>
