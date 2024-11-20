@@ -1,7 +1,6 @@
 {% extends "eventra/base.html" %} {% load static %} {% block contenido %}
 <div class="form-container">
   <h2 class="text-center mb-4">Editar sala</h2>
-    <h2 class="text-center mb-4">Editar Sala</h2>
 
   <!-- Mostrar mensajes -->
   {% if messages %} {% for message in messages %}
@@ -11,18 +10,10 @@
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <!-- Campos del formulario con la estructura que solicitaste -->
     <div class="text-field">
-      <label for="{{ form.nombre.id_for_label }}" class="form-label"
-        >Nombre de la sala</label
-      >
-      {{ form.nombre }}
-    </div>
-        <!-- Campos del formulario con la estructura que solicitaste -->
-        <div class="text-field">
             <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre de la Sala</label>
             {{ form.nombre }}
-        </div>
+    </div>
 
     <div class="text-field">
       <label for="{{ form.direccion.id_for_label }}" class="form-label"
